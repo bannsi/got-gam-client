@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import ArchiveFilledIcon from '../icons/ArchiveFilledIcon';
-import ArchiveOutlinedIcon from '../icons/ArchiveOutlinedIcon copy';
+import ArchiveOutlinedIcon from '../icons/ArchiveOutlinedIcon';
+import ArchiveIcon from '../icons/ArchiveOutlinedIcon';
 
 interface Props {
   isArchived: boolean;

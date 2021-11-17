@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ArchiveOutlinedIcon = () => {
+const ArchiveNavOutlinedIcon = () => {
   return (
     <span
       dangerouslySetInnerHTML={{
@@ -13,4 +13,4 @@ const ArchiveOutlinedIcon = () => {
   );
 };
 
-export default ArchiveOutlinedIcon;
+export default ArchiveNavOutlinedIcon;
