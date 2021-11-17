@@ -1,25 +1,23 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "곧,감",
+  "name": "여행? 언제감? 곧,감",
+  "description" : "누군가의 기록이 나에게는 정보가 되고, 또 나의 기록이 누군가에게는 정보가 되는 여행 플랫폼",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "GotGam.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "GotGam88.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "88x88"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#F45400",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "lang": "ko-KR"
 }
