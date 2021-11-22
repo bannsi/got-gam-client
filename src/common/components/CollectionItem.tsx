@@ -10,7 +10,7 @@ const CollectionItem = () => {
     setIsArchived(!isArchived);
   };
   return (
-    <Container>
+    <Container className="item">
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
       <Content>
         <Title type={'6'}>제주 첫 여행</Title>
@@ -29,19 +29,14 @@ const Container = styled.div`
   min-height: 220px;
   display: flex;
   flex-direction: column;
-  margin: 0 8px;
+  margin: 0 8px 8px 8px;
   padding: 16px;
   /* Gray scale/disable */
   background: #cccccc;
   border-radius: 8px;
   align-items: flex-end;
   justify-content: space-between;
-  &:last-child {
-    margin-right: 16px;
-  }
-  &:first-child {
-    margin-left: 16px;
-  }
+
   color: #ffffff;
 `;
 const Content = styled.div`

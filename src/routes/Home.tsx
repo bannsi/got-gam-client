@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import BestCollections from '../modules/home/containers/BestCollections';
-import BestPieceMakers from '../modules/home/containers/BestPieceMakers';
-import BestPieces from '../modules/home/containers/BestPieces';
-import DDay from '../modules/home/containers/DDay';
-import Header from '../modules/home/containers/Header';
+import BestCollections from '../modules/home/components/BestCollections';
+import BestPieceMakers from '../modules/home/components/BestPieceMakers';
+import BestPieces from '../modules/home/components/BestPieces';
+import DDay from '../modules/home/components/DDay';
+import Header from '../common/components/Header';
 
 const Home = () => {
   return (

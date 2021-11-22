@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import BellIcon from '../../../common/icons/BellIcon';
-import SearchIcon from '../../../common/icons/SearchIcon';
+import BellIcon from '../icons/BellIcon';
+import SearchIcon from '../icons/SearchIcon';
 
 const Header = () => {
   return (
@@ -17,7 +17,8 @@ export default Header;
 const Container = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 16px;
+  align-items: center;
+  padding: 0 16px;
   min-height: 53px;
   margin-top: 24px;
   svg {

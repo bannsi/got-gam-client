@@ -32,4 +32,12 @@ const Label = styled(SubTitle)`
 const CollectionList = styled.div`
   display: flex;
   overflow-x: scroll;
+  .item {
+    &:last-child {
+      margin-right: 16px;
+    }
+    &:first-child {
+      margin-left: 16px;
+    }
+  }
 `;
