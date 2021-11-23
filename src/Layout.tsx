@@ -60,7 +60,6 @@ const Navigation = styled.nav`
   height: 57px;
   align-items: center;
   justify-content: space-around;
-  border-top: 1px solid black;
   background: #ffffff;
   box-shadow: 0px -1.04167px 1.04167px rgba(0, 0, 0, 0.1);
   svg {

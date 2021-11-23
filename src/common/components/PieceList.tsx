@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import PieceItem from '../../../common/components/PieceItem';
+import PieceItem from './PieceItem';
 
-const PieceFeed = () => {
+const PieceList = () => {
   return (
     <Container>
       <PieceItem />
@@ -17,7 +17,7 @@ const PieceFeed = () => {
   );
 };
 
-export default PieceFeed;
+export default PieceList;
 
 const Container = styled.div`
   display: flex;

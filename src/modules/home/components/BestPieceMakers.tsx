@@ -36,4 +36,13 @@ const Label = styled(SubTitle)`
 const MakerList = styled.div`
   display: flex;
   overflow-x: scroll;
+  .profileImg {
+    margin: 0 4px;
+    &:last-child {
+      margin-right: 16px;
+    }
+    &:first-child {
+      margin-left: 16px;
+    }
+  }
 `;

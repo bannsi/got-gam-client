@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Header from '../common/components/Header';
 import { Headline } from '../common/text/Headline';
 import Filter from '../modules/feed/components/Filter';
-import PieceFeed from '../modules/feed/components/PieceFeed';
-import CollectionFeed from '../modules/feed/components/CollectionFeed';
+import PieceList from '../common/components/PieceList';
+import CollectionList from '../common/components/CollectionList';
 
 const Feed = () => {
   const [showPiece, setShowPiece] = useState(true);
@@ -20,7 +20,7 @@ const Feed = () => {
         </Title>
       </TitleContainer>
       <Filter />
-      {showPiece ? <PieceFeed /> : <CollectionFeed />}
+      {showPiece ? <PieceList /> : <CollectionList />}
     </Container>
   );
 };

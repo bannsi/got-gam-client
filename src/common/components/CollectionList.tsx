@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import CollectionItem from '../../../common/components/CollectionItem';
+import CollectionItem from './CollectionItem';
 
-const CollectionFeed = () => {
+const CollectionList = () => {
   return (
     <Container>
       <CollectionItem />
@@ -13,7 +13,7 @@ const CollectionFeed = () => {
   );
 };
 
-export default CollectionFeed;
+export default CollectionList;
 
 const Container = styled.div`
   display: flex;
