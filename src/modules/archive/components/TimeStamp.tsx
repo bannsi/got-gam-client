@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Caption } from '../../../common/text/Caption';
+import { timeParser } from '../utils/timeParser';
 
 interface TimeStampProps {
   time: string;
+  url: string;
 }
 
-const TimeStamp = ({ time }: TimeStampProps) => {
+const TimeStamp = ({ url, time }: TimeStampProps) => {
   return (
-    <Container>
+    <Container onClick={() => window.open(`${timeParser(url, time)}`)}>
       <Caption>{time}</Caption>
     </Container>
   );
@@ -17,10 +19,6 @@ const TimeStamp = ({ time }: TimeStampProps) => {
 export default TimeStamp;
 
 const Container = styled.div`
-  position: absolute;
-  top: 202px;
-  left: 16px;
-  z-index: 1;
   width: 57px;
   height: 26px;
   display: flex;
@@ -31,4 +29,5 @@ const Container = styled.div`
   box-sizing: border-box;
   border-radius: 6px;
   background-color: #ffffff;
+  margin-right: 4px;
 `;
