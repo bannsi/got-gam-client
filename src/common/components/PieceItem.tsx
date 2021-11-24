@@ -21,8 +21,6 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 8px;
-  width: 186px;
-  height: 186px;
   min-width: 186px;
   min-height: 186px;
   background: #cccccc;

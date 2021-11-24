@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import CollectionItem from './CollectionItem';
+import LinkItem from './LinkItem';
 
-const CollectionList = () => {
+const LinkList = () => {
   return (
     <Container>
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
+      <LinkItem />
+      <LinkItem />
+      <LinkItem />
+      <LinkItem />
     </Container>
   );
 };
 
-export default CollectionList;
+export default LinkList;
 
 const Container = styled.div`
   width: 100%;

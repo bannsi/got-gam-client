@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ArchiveButton from '../buttons/ArchiveButton';
-import { Headline } from '../text/Headline';
-import { SubTitle } from '../text/SubTitle';
+import ArchiveButton from '../../../common/buttons/ArchiveButton';
+import { Headline } from '../../../common/text/Headline';
+import { SubTitle } from '../../../common/text/SubTitle';
 
-const CollectionItem = () => {
+const BestCollectionItem = () => {
   const [isArchived, setIsArchived] = useState(false);
   const onArchive = () => {
     setIsArchived(!isArchived);
@@ -20,15 +20,16 @@ const CollectionItem = () => {
   );
 };
 
-export default CollectionItem;
+export default BestCollectionItem;
 
 const Container = styled.div`
+  width: 304px;
+  height: 200px;
+  min-width: 304px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 216px;
-  min-height: 216px;
-  margin: 4px 0;
+  margin: 0 8px 8px 8px;
   padding: 16px;
   background: #cccccc;
   border-radius: 8px;

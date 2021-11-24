@@ -7,7 +7,7 @@ const MakePieceNavButton = () => {
   const navigate = useNavigate();
 
   return (
-    <Button onClick={() => navigate('/MakePiece')}>
+    <Button onClick={() => navigate('/make-piece')}>
       <PlusIcon />
     </Button>
   );
