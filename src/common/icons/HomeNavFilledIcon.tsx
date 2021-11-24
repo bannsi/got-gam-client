@@ -1,8 +1,9 @@
 import React from 'react';
+import { IconContainer } from './IconContainer';
 
 const HomeNavFilledIcon = () => {
   return (
-    <span
+    <IconContainer
       dangerouslySetInnerHTML={{
         __html: `<svg width="39" height="38" viewBox="0 0 39 38" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="36" height="36" fill="white"/>
@@ -18,7 +19,7 @@ const HomeNavFilledIcon = () => {
 </svg>
 `
       }}
-    ></span>
+    ></IconContainer>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from 'react';
+import { IconContainer } from './IconContainer';
 
 const ArchiveNavFilledIcon = () => {
   return (
-    <span
+    <IconContainer
       dangerouslySetInnerHTML={{
         __html: `<svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M30 31.5L18 26.1L6 31.5V7.2C6 5.7 7.35 4.5 9 4.5H27C28.65 4.5 30 5.7 30 7.2V31.5Z" fill="#181818"/>
@@ -10,7 +11,7 @@ const ArchiveNavFilledIcon = () => {
         </svg>
         `
       }}
-    ></span>
+    ></IconContainer>
   );
 };
 

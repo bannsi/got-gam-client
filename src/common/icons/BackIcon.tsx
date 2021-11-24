@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IconContainer } from './IconContainer';
 interface BackIconProps {
   onBack: () => void;
 }
@@ -18,16 +19,3 @@ const BackIcon = ({ onBack }: BackIconProps) => {
 };
 
 export default BackIcon;
-
-const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-right: 8px;
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;

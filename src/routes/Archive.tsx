@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import AddFolderButton from '../modules/archive/components/AddFolderButton';
 import ArchiveHeader from '../modules/archive/components/ArchiveHeader';
 import FolderItem from '../modules/archive/components/FolderItem';
+import LinkButton from '../modules/archive/components/LinkButton';
 import Folder from './Folder';
 
 const Archive = () => {
@@ -12,6 +13,8 @@ const Archive = () => {
   const folder = {
     title: '폴더 타이틀'
   };
+
+  const [visible, setVisible] = useState(false);
 
   return (
     <Container>
@@ -26,6 +29,7 @@ const Archive = () => {
           <AddFolderButton />
         </FolderContainer>
       )}
+      {!params.archiveId && <LinkButton onClick={() => setVisible(true)} />}
     </Container>
   );
 };
