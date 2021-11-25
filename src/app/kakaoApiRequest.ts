@@ -1,30 +1,29 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { tokenStore } from './tokenStore';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
-axios.defaults.baseURL = 'http://52.79.130.111:5555/';
+const BASE_URL = 'https://dapi.kakao.com';
+
 export interface ApiOption {
   url: string;
   method: 'get' | 'post' | 'put' | 'delete';
   headers?: { [key: string]: string };
   body?: { [key: string]: any }; // eslint-disable-line
-  query?: { [key: string]: string | number | boolean | string[] };
+  query?: { [key: string]: string | number | boolean };
+  isApplicant?: boolean;
 }
 
-const makeRequest = async <T>({ url, method, headers, body, query }: ApiOption): Promise<T> => {
-  let token = null;
-  token = tokenStore.get();
+const kakaoApiRequest = async <T>({ url, method, headers, body, query }: ApiOption): Promise<T> => {
   let response = {} as AxiosResponse;
+
   try {
     const requestConfig: AxiosRequestConfig = {
-      url,
+      baseURL: BASE_URL,
+      url: `${url}.json`,
       method,
       data: body,
       params: query
     };
     requestConfig.headers = headers ? { ...headers } : {};
-    if (token) {
-      requestConfig.headers.Authorization = `Bearer ${token}`;
-    }
+    requestConfig.headers.Authorization = `KakaoAK 057a07ccce2a54f042f9b62e61d4457f`;
     response = await axios.request<T>(requestConfig);
   } catch (error) {
     console.log(error);
@@ -32,4 +31,4 @@ const makeRequest = async <T>({ url, method, headers, body, query }: ApiOption):
   return response.data;
 };
 
-export default makeRequest;
+export default kakaoApiRequest;

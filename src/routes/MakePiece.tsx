@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Description from '../modules/make-piece/components/Description';
 import How from '../modules/make-piece/components/How';
-import ImgUpload from '../modules/make-piece/components/ImgUpload';
+import ImgUploader from '../modules/make-piece/components/ImgUploader';
 import MakerHeader from '../modules/make-piece/components/MakerHeader';
 import When from '../modules/make-piece/components/When';
 import Where from '../modules/make-piece/components/Where';
@@ -12,11 +12,15 @@ import { Location } from '../modules/make-piece/utils/Location.interface';
 
 const MakePiece = () => {
   const [form, setForm] = useState(0);
-  const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
   const [imgLocation, setImgLocation] = useState<Location>({
     lat: 0,
-    lon: 0
+    lng: 0
   });
+  const [location, setLocation] = useState<Location>({
+    lat: 0,
+    lng: 0
+  });
+  const [fileList, setFileList] = useState<File[]>([]);
   const onNext = () => {
     setForm(form + 1);
   };
@@ -24,7 +28,7 @@ const MakePiece = () => {
     {
       name: 'img',
       element: (
-        <ImgUpload
+        <ImgUploader
           fileList={fileList}
           setFileList={setFileList}
           onNext={onNext}
@@ -32,7 +36,17 @@ const MakePiece = () => {
         />
       )
     },
-    { name: 'where', element: <Where /> },
+    {
+      name: 'where',
+      element: (
+        <Where
+          onNext={onNext}
+          setLocation={setLocation}
+          lat={imgLocation.lat}
+          lng={imgLocation.lng}
+        />
+      )
+    },
     { name: 'when', element: <When /> },
     { name: 'how', element: <How /> },
     { name: 'who', element: <Who /> },
