@@ -11,7 +11,7 @@ interface TimeStampProps {
 const TimeStamp = ({ url, time }: TimeStampProps) => {
   return (
     <Container onClick={() => window.open(`${timeParser(url, time)}`)}>
-      <Caption>{time}</Caption>
+      <Caption className="time">{time}</Caption>
     </Container>
   );
 };
@@ -25,7 +25,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid #f45400;
-  color: #f45400;
+  .time {
+    color: #f45400;
+  }
   box-sizing: border-box;
   border-radius: 6px;
   background-color: #ffffff;

@@ -1,13 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import PlusIcon from '../icons/PlusIcon';
 
-const MakePieceNavButton = () => {
-  const navigate = useNavigate();
-
+interface MakePieceNavButtonProps {
+  onClick: () => void;
+}
+const MakePieceNavButton = ({ onClick }: MakePieceNavButtonProps) => {
   return (
-    <Button onClick={() => navigate('/make-piece')}>
+    <Button onClick={onClick}>
       <PlusIcon />
     </Button>
   );

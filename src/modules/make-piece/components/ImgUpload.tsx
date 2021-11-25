@@ -34,7 +34,7 @@ const ImgUpload = ({ fileList, setFileList, onNext, setImgLocation }: ImgUploadP
   const onCancel = () => setFileState({ ...fileState, previewVisible: false });
   const onChange = (info: any) => {
     setFileList(info.fileList);
-    console.log('file ' + fileList);
+
     if (fileList[0]?.url) {
       EXIF.getData(fileList[0].url, function (this: any) {
         const exifData = EXIF.getAllTags(this);

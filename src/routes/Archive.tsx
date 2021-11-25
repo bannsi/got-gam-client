@@ -14,7 +14,6 @@ import AddFolderItem from '../modules/archive/components/AddFolderItem';
 import FolderSelectItem from '../modules/archive/components/FolderSelectItem';
 import AddTimelineButton from '../common/buttons/AddTimelineButton';
 import AddFolderButton from '../modules/archive/components/AddFolderButton';
-import AddNewFolderButton from '../common/icons/AddNewFolderButton';
 
 type ModalElementType = {
   [index: string]: JSX.Element;
@@ -64,9 +63,6 @@ const Archive = () => {
       }, 500);
     }
   }, [visible]);
-  useEffect(() => {
-    console.log({ ...timelineList });
-  }, []);
 
   const ModalElement: ModalElementType = {
     ['link']: (
@@ -74,22 +70,20 @@ const Archive = () => {
         <SubTitle className="title" type="1">
           링크저장
         </SubTitle>
-        <Caption className="caption">링크</Caption>
+        <Caption>링크</Caption>
         <Input
           autoFocus
           value={link}
           onChange={(e: any) => {
             setLink(e.target.value);
             if (e.target.value.includes('youtube.com')) {
-              console.log('youtubelink');
               setTimelineVisible(true);
             }
           }}
         ></Input>
         <TimeLineInputs timelineVisible={timelineVisible}>
-          <Caption className="caption">타임라인 (선택)</Caption>
+          <Caption>타임라인 (선택)</Caption>
           {Object.keys(timelineList).map((timeline, index) => {
-            console.log(indexCount);
             if (indexCount >= index) {
               return (
                 <TimeInputContainer>
@@ -203,9 +197,7 @@ const ModalContent = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 12px;
-  }
-  .caption {
-    color: #999999;
+    color: #666666;
   }
 `;
 

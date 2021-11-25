@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface ModalProps {
   visible: boolean;
-  onClose?: any;
+  onClose?: () => void;
   width?: number | string;
   height?: number | string;
 }
@@ -49,7 +49,8 @@ const Modal: FunctionComponent<ModalProps> = ({ visible, onClose, width, height,
           display: 'flex',
           flexDirection: 'column',
           border: 'none',
-          borderRadius: '16px 16px 0 0'
+          borderRadius: '16px 16px 0 0',
+          padding: '8px 0 0 0 '
         }
       }}
     >

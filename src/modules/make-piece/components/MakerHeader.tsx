@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import BackIcon from '../../../common/icons/BackIcon';
-import { ButtonText } from '../../../common/text/ButtonText';
 import { useNavigate } from 'react-router-dom';
 
 interface MakerHeaderProps {

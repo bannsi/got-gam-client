@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PieceItem from '../../../common/components/PieceItem';
 import PieceMakerItem from '../../../common/components/PieceMakerItem';
 import { SubTitle } from '../../../common/text/SubTitle';
 

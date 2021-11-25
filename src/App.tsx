@@ -11,6 +11,7 @@ import Piece from './routes/Piece';
 import MakePiece from './routes/MakePiece';
 import Login from './routes/Login';
 import Folder from './routes/Folder';
+import LoginRedirect from './routes/LoginRedirect';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       </Route>
       <Route path="make-piece" element={<MakePiece />} />
       <Route path="login" element={<Login />} />
+      <Route path="login/kakao" element={<LoginRedirect />} />
     </Routes>
   );
 }
