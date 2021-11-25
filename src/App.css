@@ -38,3 +38,28 @@
 }
 
 @import '~antd/dist/antd.css';
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out; 
+    
+}
+
+.ReactModal__Content{
+    max-height: 0;
+    transition: max-height 500ms ease-in-out; 
+    
+}
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+.ReactModal__Content--after-open{
+    max-height: 600px;
+    
+}
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+.ReactModal__Content--before-close{
+    max-height: 0;
+}

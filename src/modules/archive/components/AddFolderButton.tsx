@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import PlusIcon from '../../../common/icons/PlusIcon';
 
-const AddFolderButton = () => {
+interface AddFolderButtonProps {
+  onClick: () => void;
+}
+
+const AddFolderButton = ({ onClick }: AddFolderButtonProps) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <PlusIcon />
     </Container>
   );

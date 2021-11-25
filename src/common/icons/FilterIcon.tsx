@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconContainer } from './IconContainer';
+import styled from 'styled-components';
 
 const FilterIcon = () => {
   return (
@@ -15,3 +15,13 @@ const FilterIcon = () => {
 };
 
 export default FilterIcon;
+
+const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
