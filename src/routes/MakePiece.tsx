@@ -8,11 +8,14 @@ import MakerHeader from '../modules/make-piece/components/MakerHeader';
 import When from '../modules/make-piece/components/When';
 import Where from '../modules/make-piece/components/Where';
 import Who from '../modules/make-piece/components/Who';
-import moment, { Moment } from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { LocationResponse } from '../modules/make-piece/utils/functions/LocationResponse';
 import { Location } from '../modules/make-piece/utils/functions/Location.interface';
+import { useDispatch } from 'react-redux';
+import { makePieceSuccess } from '../modules/piece/utils/piece.action';
+import axios from 'axios';
 const MakePiece = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState(0);
   const [imgLocation, setImgLocation] = useState<Location>({
@@ -21,16 +24,53 @@ const MakePiece = () => {
   });
   const [location, setLocation] = useState<LocationResponse>();
   const [fileList, setFileList] = useState<File[]>([]);
-  const [date, setDate] = useState('');
-  const [keywords, setKeywords] = useState<string[]>([]);
-  const [companion, setCompanion] = useState<string[]>([]);
+  const [date, setDate] = useState('2021-11-28');
+  const [keywords, setKeywords] = useState<number[]>([]);
+  const [companion, setCompanion] = useState<number[]>([]);
   const [description, setDescription] = useState<string>('');
 
   const onNext = () => {
     setForm(form + 1);
   };
 
-  // const onSubmit = () => {};
+  const onSubmit = async () => {
+    if (location) {
+      const formData = new FormData();
+      for (let i = 0; i < fileList.length; i++) {
+        formData.append('images', fileList[i]);
+      }
+      formData.append('date', date);
+      formData.append('content', description);
+      formData.append('latitude', location?.y);
+      formData.append('longitude', location?.x);
+      formData.append('address', location?.place_name);
+      formData.append('addressDetail', location?.address_name);
+      formData.append('placeUrl', location?.place_url);
+      let keyword = '';
+      let com = '';
+      for (let i = 0; i < keywords.length; i++) {
+        keyword += keyword + `${keywords[i].toString()},`;
+      }
+      for (let i = 0; i < companion.length; i++) {
+        com += com + `${companion[i].toString()},`;
+      }
+      formData.append('whos', com);
+      formData.append('keywords', keyword);
+      console.log(JSON.stringify(companion));
+      try {
+        const res = await axios.post(`http://52.79.130.111:5555/peices/v1/`, formData, {
+          headers: {
+            ['Authorization']: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOTk4MjY2MDQ1IiwiZXhwIjoxNjQ1NTI2NjE4LCJpYXQiOjE2Mzc3NTA2MTh9.q5rfGr8NZD69yZhXS5FUfWmj81NJCeru15Tbgibda9_P1PO_TiweW5OIz20Dr1zTpwMJsEa7UxncLAYsjs3hSg`,
+            ['Content-Type']: `multipart/form-data`
+          }
+        });
+        await dispatch(makePieceSuccess(res.data.body));
+        await navigate(`/piece/${res.data.body.peiceId}`);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
 
   const formList = [
     {
@@ -98,7 +138,10 @@ const MakePiece = () => {
         <Description
           description={description}
           setDescription={setDescription}
-          onNext={() => navigate(-1)}
+          onNext={() => {
+            onSubmit();
+            navigate(-1);
+          }}
         />
       )
     }

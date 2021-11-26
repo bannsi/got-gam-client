@@ -10,31 +10,39 @@ const BestCollectionItem = () => {
     setIsArchived(!isArchived);
   };
   return (
-    <Container className="item">
+    <ContainerBox className="item">
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
-      <Content>
-        <Title type={'6'}>제주 첫 여행</Title>
-        <SubTitle type={'2'}>제주</SubTitle>
-      </Content>
-    </Container>
+      <Container>
+        <Content>
+          <Title type={'6'}>제주 첫 여행</Title>
+          <SubTitle type={'2'}>제주</SubTitle>
+        </Content>
+      </Container>
+    </ContainerBox>
   );
 };
 
 export default BestCollectionItem;
 
-const Container = styled.div`
+const ContainerBox = styled.div`
   width: 304px;
   height: 200px;
   min-width: 304px;
   min-height: 200px;
   display: flex;
-  flex-direction: column;
   margin: 0 8px 8px 8px;
+  border-radius: 8px;
+  position: relative;
+`;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 16px;
   background: #cccccc;
   border-radius: 8px;
-  align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
   color: #ffffff;
 `;
 const Content = styled.div`

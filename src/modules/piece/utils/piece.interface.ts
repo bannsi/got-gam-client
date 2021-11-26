@@ -12,8 +12,8 @@ export interface newPiece {
 }
 
 export interface Piece {
-  id: string;
-  images: File[];
+  peiceId: number;
+  images: string[];
   date: string;
   content: string;
   latitude: number;
@@ -23,4 +23,14 @@ export interface Piece {
   keywords: string[];
   placeUrl: string;
   whos: string[];
+  createdAt: string;
+}
+
+export interface Keyword {
+  id: number;
+  name: string;
+}
+export interface Who {
+  id: number;
+  who: string;
 }

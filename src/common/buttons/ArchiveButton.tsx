@@ -18,4 +18,9 @@ const ArchiveButton = ({ isArchived, onArchive }: Props) => {
 
 export default ArchiveButton;
 
-const Button = styled.div``;
+const Button = styled.div`
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+`;

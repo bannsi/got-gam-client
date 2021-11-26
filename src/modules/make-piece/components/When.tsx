@@ -18,9 +18,7 @@ const When = ({ locationName, date, onNext, setDate }: WhenProps) => {
     console.log('Formatted Selected Time: ', dateString);
     setDate(value ? value.format('YYYY-MM-DD') : '');
   }
-  useEffect(() => {
-    console.log(date);
-  }, []);
+
   return (
     <Container>
       <TextContainer>

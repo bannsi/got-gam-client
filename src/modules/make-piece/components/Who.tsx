@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import moment, { Moment } from 'moment';
 import NextButton from '../../../common/buttons/NextButton';
 import { Question } from './Question';
 import Keyword from './Keyword';
+import { fetchWhosStart } from '../../piece/utils/piece.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWhos } from '../../piece/utils/piece.reducer';
+import { RootState } from '../../../app/rootReducer';
 
 interface HowProps {
   locationName?: string;
   date: string;
   onNext: () => void;
-  companion: string[];
-  setCompanion: (arr: string[]) => void;
+  companion: number[];
+  setCompanion: (arr: number[]) => void;
 }
 const dateFormat = 'YYYY년 MM월 DD일';
 
 const companionList = ['친구와', '연인과', '선/후배와', '형제/자매와', '부모님과', '가족과'];
 const Who = ({ locationName, date, onNext, companion, setCompanion }: HowProps) => {
+  const dispatch = useDispatch();
+  const keywords = useSelector((state: RootState) => selectWhos(state));
+  useEffect(() => {
+    dispatch(fetchWhosStart());
+  }, []);
   return (
     <Container>
       <TextContainer>
@@ -30,19 +39,19 @@ const Who = ({ locationName, date, onNext, companion, setCompanion }: HowProps) 
         <Content>
           <Question>누구와 함께했나요?</Question>
           <KeywordContainer>
-            {companionList.map((com) => (
+            {keywords.map((com) => (
               <Keyword
-                key={com}
+                key={com.id}
                 onSelect={() => {
-                  if (!companion.includes(com)) {
-                    setCompanion([...companion, com]);
+                  if (!companion.includes(com.id)) {
+                    setCompanion([...companion, com.id]);
                   } else {
-                    const newKeyword = companion.filter((key) => key !== com);
+                    const newKeyword = companion.filter((key) => key !== com.id);
                     setCompanion(newKeyword);
                   }
                 }}
-                selected={companion.includes(com)}
-                text={com}
+                selected={companion.includes(com.id)}
+                text={com.who}
               />
             ))}
           </KeywordContainer>

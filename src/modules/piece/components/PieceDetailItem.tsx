@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Piece } from '../utils/piece.interface';
 
-const PieceDetailItem = () => {
+interface PieceDetailItemProps {
+  piece: Piece;
+}
+
+const PieceDetailItem = ({ piece }: PieceDetailItemProps) => {
   return (
     <Container>
-      <Img></Img>
-      <Desc>
-        문체부는 한국관광공사와 함께 9일부터 숙박할인권을 발급한다. 여행객들은 국내
-        온라인여행사(OTA) 47곳을 통 문체부는 한국관광공사와 함께 9일부터 숙박할인권을 발급한다.
-        여행객들은 국내 온라인여행사(OTA) 47곳을 통 문체부는 한국관광공사와 함께 9일부터
-        숙박할인권을 발급한다. 여행객들은 국내 온라인여행사(OTA) 47곳을 통
-      </Desc>
+      <Img src={piece.images[0]}></Img>
+      <Desc>{piece.content}</Desc>
     </Container>
   );
 };
@@ -26,7 +26,7 @@ const Container = styled.div`
   border-radius: 8px;
 `;
 
-const Img = styled.div`
+const Img = styled.img`
   width: calc(100vw - 32px);
   height: calc(100vw - 32px);
   border-radius: 8px 8px 0 0;

@@ -1,32 +1,31 @@
-import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { all, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call } from 'typed-redux-saga';
 import {
-  fecthPieceStart,
-  fetchPieceSuccess,
-  makePieceStart,
-  makePieceSuccess
-} from './piece.action copy';
-import { makePieceAPI } from './piece.api';
+  fetchKeywordsStart,
+  fetchKeywordsSuccess,
+  fetchWhosStart,
+  fetchWhosSuccess
+} from './piece.action';
+import { fetchKeywordsAPI, fetchWhosAPI } from './piece.api';
 
-function* fetchPieceSaga(action: ReturnType<typeof fecthPieceStart>) {
+function* fetchKeywordsSaga() {
   try {
-    // yield call();
+    const { body } = yield call(fetchKeywordsAPI);
+    yield put(fetchKeywordsSuccess(body));
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* fetchWhosSaga() {
+  try {
+    const { body } = yield call(fetchWhosAPI);
+    yield put(fetchWhosSuccess(body));
   } catch (error) {
     console.log(error);
   }
 }
 
-function* makePieceSaga(action: ReturnType<typeof makePieceStart>) {
-  try {
-    const newPiece = action.payload;
-    const returnedPiece = yield call(makePieceAPI, newPiece);
-    yield put(makePieceSuccess(returnedPiece));
-  } catch (error) {
-    console.log(error);
-  }
-}
 export function* watchPiece() {
-  yield all([
-    takeLatest(fecthPieceStart.type, fetchPieceSaga),
-    takeEvery(makePieceStart.type, makePieceSaga)
-  ]);
+  yield all([takeLatest(fetchKeywordsStart.type, fetchKeywordsSaga)]);
+  yield all([takeLatest(fetchWhosStart.type, fetchWhosSaga)]);
 }

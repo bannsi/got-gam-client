@@ -23,9 +23,7 @@ type ModalElementType = {
 const Archive = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const folderTitle = {
-    title: '폴더 타이틀'
-  };
+
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
   const [key, setKey] = useState('link');
@@ -110,9 +108,16 @@ const Archive = () => {
         </SubTitle>
         <FolderSelectorContainer>
           <AddFolderItem onClick={() => setKey('newfolder')} />
-          <FolderSelectItem selected={folder === '1'} onClick={() => setFolder('1')} />
-          <FolderSelectItem selected={folder === '2'} onClick={() => setFolder('2')} />
-          <FolderSelectItem selected={folder === '3'} onClick={() => setFolder('3')} />
+          <FolderSelectItem
+            title={'부산'}
+            selected={folder === '부산'}
+            onClick={() => setFolder('부산')}
+          />
+          <FolderSelectItem
+            title={'제주'}
+            selected={folder === '제주'}
+            onClick={() => setFolder('제주')}
+          />
         </FolderSelectorContainer>
         <NextButton text={'완료'} onNext={onSubmit} />
       </ModalContent>
@@ -138,14 +143,13 @@ const Archive = () => {
 
   return (
     <Container>
-      <ArchiveHeader folder={params.archiveId ? folderTitle : null} />
+      <ArchiveHeader folder={params.archiveId} />
       {params.archiveId ? (
         <Folder />
       ) : (
         <FolderContainer>
-          <FolderItem onClick={() => navigate(`/archive/${1}`)} />
-          <FolderItem onClick={() => navigate(`/archive/${1}`)} />
-          <FolderItem onClick={() => navigate(`/archive/${1}`)} />
+          <FolderItem title="부산" onClick={() => navigate(`/archive/${'부산'}`)} />
+          <FolderItem title="제주" onClick={() => navigate(`/archive/${'제주'}`)} />
           <AddFolderButton
             onClick={() => {
               setKey('newfolder');

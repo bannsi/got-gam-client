@@ -5,13 +5,14 @@ import { Caption } from '../../../common/text/Caption';
 interface FolderSelectItemProps {
   selected: boolean;
   onClick: () => void;
+  title: string;
 }
 
-const FolderSelectItem = ({ selected, onClick }: FolderSelectItemProps) => {
+const FolderSelectItem = ({ title, selected, onClick }: FolderSelectItemProps) => {
   return (
     <Container selected={selected} onClick={onClick}>
       <Block></Block>
-      <Caption>폴더 이름</Caption>
+      <Caption>{title} </Caption>
     </Container>
   );
 };

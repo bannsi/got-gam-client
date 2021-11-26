@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import moment, { Moment } from 'moment';
 import NextButton from '../../../common/buttons/NextButton';
 import { Question } from './Question';
 import Keyword from './Keyword';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchKeywordsStart } from '../../piece/utils/piece.action';
+import { selectKeywords } from '../../piece/utils/piece.reducer';
+import { RootState } from '../../../app/rootReducer';
 
 interface HowProps {
   locationName?: string;
   date: string;
   onNext: () => void;
-  keywords: string[];
-  setKeywords: (arr: string[]) => void;
+  keywords: number[];
+  setKeywords: (arr: number[]) => void;
 }
 const dateFormat = 'YYYY년 MM월 DD일';
 const How = ({ locationName, date, onNext, keywords, setKeywords }: HowProps) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchKeywordsStart());
+  }, []);
+  const keylist = useSelector((state: RootState) => selectKeywords(state));
+
   return (
     <Container>
       <TextContainer>
@@ -28,42 +39,21 @@ const How = ({ locationName, date, onNext, keywords, setKeywords }: HowProps) =>
         <Content>
           <Question>어땠나요?</Question>
           <KeywordContainer>
-            <Keyword
-              onSelect={() => {
-                if (!keywords.includes('금요일날')) {
-                  setKeywords([...keywords, '금요일날']);
-                } else {
-                  const newKeyword = keywords.filter((key) => key !== '금요일날');
-                  setKeywords(newKeyword);
-                }
-              }}
-              selected={keywords.includes('금요일날')}
-              text="금요일날"
-            />
-            <Keyword
-              onSelect={() => {
-                if (!keywords.includes('맛집탐방')) {
-                  setKeywords([...keywords, '맛집탐방']);
-                } else {
-                  const newKeyword = keywords.filter((key) => key !== '맛집탐방');
-                  setKeywords(newKeyword);
-                }
-              }}
-              selected={keywords.includes('맛집탐방')}
-              text="맛집탐방"
-            />
-            <Keyword
-              onSelect={() => {
-                if (!keywords.includes('카페탐방')) {
-                  setKeywords([...keywords, '카페탐방']);
-                } else {
-                  const newKeyword = keywords.filter((key) => key !== '카페탐방');
-                  setKeywords(newKeyword);
-                }
-              }}
-              selected={keywords.includes('카페탐방')}
-              text="카페탐방"
-            />
+            {keylist.map((key) => (
+              <Keyword
+                key={key.id}
+                onSelect={() => {
+                  if (!keywords.includes(key.id)) {
+                    setKeywords([...keywords, key.id]);
+                  } else {
+                    const newKeyword = keywords.filter((word) => word !== key.id);
+                    setKeywords(newKeyword);
+                  }
+                }}
+                selected={keywords.includes(key.id)}
+                text={key.name}
+              />
+            ))}
           </KeywordContainer>
         </Content>
       </TextContainer>

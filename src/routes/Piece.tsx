@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { RootState } from '../app/rootReducer';
 import Footer from '../common/components/Footer';
+import { selectPieceById } from '../modules/myPage/utils/myPage.reducer';
 import Keywords from '../modules/piece/components/Keywords';
 import LocationItem from '../modules/piece/components/LocationItem';
 import PieceDetailItem from '../modules/piece/components/PieceDetailItem';
@@ -11,18 +14,24 @@ import RecommendPieceList from '../modules/piece/components/RecommendPieceList';
 
 const Piece = () => {
   const { pieceId } = useParams();
-  return (
+  const piece = pieceId
+    ? useSelector((state: RootState) => selectPieceById(state, parseInt(pieceId)))
+    : null;
+  console.log(pieceId, piece);
+  return piece ? (
     <Container>
       <PieceHeader />
       <ElementContainer>
         <PieceMaker></PieceMaker>
-        <PieceDetailItem />
-        <LocationItem />
+        <PieceDetailItem piece={piece} />
+        <LocationItem piece={piece} />
         <Keywords />
-        <RecommendPieceList />
       </ElementContainer>
+      <RecommendPieceList />
       <Footer />
     </Container>
+  ) : (
+    <></>
   );
 };
 
@@ -39,6 +48,6 @@ const Container = styled.div`
 const ElementContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100%; */
   padding: 16px;
 `;

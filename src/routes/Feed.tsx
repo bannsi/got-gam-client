@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../common/components/Header';
 import { Headline } from '../common/text/Headline';
 import Filter from '../modules/feed/components/Filter';
 import PieceList from '../common/components/PieceList';
 import CollectionList from '../common/components/CollectionList';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMyPieceStart } from '../modules/myPage/utils/myPage.action';
+import { RootState } from '../app/rootReducer';
+import { selectMyPieceList } from '../modules/myPage/utils/myPage.reducer';
 
 const Feed = () => {
   const [showPiece, setShowPiece] = useState(true);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMyPieceStart());
+  }, []);
+
+  const pieceList = useSelector((state: RootState) => selectMyPieceList(state));
+
   return (
     <Container>
       <Header />
@@ -20,7 +31,7 @@ const Feed = () => {
         </Title>
       </TitleContainer>
       <Filter />
-      {showPiece ? <PieceList /> : <CollectionList />}
+      {showPiece ? <PieceList list={pieceList} /> : <CollectionList />}
     </Container>
   );
 };

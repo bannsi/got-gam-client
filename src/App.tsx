@@ -12,6 +12,7 @@ import MakePiece from './routes/MakePiece';
 import Login from './routes/Login';
 import Folder from './routes/Folder';
 import LoginRedirect from './routes/LoginRedirect';
+import MakeCollection from './routes/MakeCollection';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         {/* <Route path=":peiceId" element={<Peice />}></Route> */}
       </Route>
       <Route path="make-piece" element={<MakePiece />} />
+      <Route path="make-collection" element={<MakeCollection />} />
       <Route path="login" element={<Login />} />
       <Route path="login/kakao" element={<LoginRedirect />} />
     </Routes>

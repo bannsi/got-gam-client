@@ -10,17 +10,30 @@ const CollectionItem = () => {
     setIsArchived(!isArchived);
   };
   return (
-    <Container className="item">
+    <ContainerBox>
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
-      <Content>
-        <Title type={'6'}>제주 첫 여행</Title>
-        <SubTitle type={'2'}>제주</SubTitle>
-      </Content>
-    </Container>
+      <Container className="item">
+        <Content>
+          <Title type={'6'}>제주 첫 여행</Title>
+          <SubTitle type={'2'}>제주</SubTitle>
+        </Content>
+      </Container>
+    </ContainerBox>
   );
 };
 
 export default CollectionItem;
+
+const ContainerBox = styled.div`
+  display: flex;
+  width: 100%;
+  height: 216px;
+  min-height: 216px;
+  margin: 4px 0;
+  border-radius: 8px;
+  color: #ffffff;
+  position: relative;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -28,12 +41,10 @@ const Container = styled.div`
   width: 100%;
   height: 216px;
   min-height: 216px;
-  margin: 4px 0;
   padding: 16px;
   background: #cccccc;
   border-radius: 8px;
-  align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
   color: #ffffff;
 `;
 const Content = styled.div`

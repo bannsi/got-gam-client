@@ -52,7 +52,7 @@ const Layout = () => {
             <Caption>다녀온 장소마다 세세하게 기록해요</Caption>
           </ModalItem>
           <ModalItem>
-            <ButtonText>조각모음</ButtonText>
+            <ButtonText onClick={() => navigator('/make-collection')}>조각모음</ButtonText>
             <Caption>조각들을 모아 여행을 한눈에 정리해요</Caption>
           </ModalItem>
         </ModalContent>

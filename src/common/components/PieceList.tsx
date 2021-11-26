@@ -1,18 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Piece } from '../../modules/piece/utils/piece.interface';
 import PieceItem from './PieceItem';
 
-const PieceList = () => {
+interface PieceListProps {
+  list: Piece[];
+}
+
+const PieceList = ({ list }: PieceListProps) => {
+  console.log(list);
   return (
     <Container>
+      {list.map((item) => (
+        <PieceItem key={item.peiceId} piece={item} />
+      ))}
+      {/* <PieceItem />
       <PieceItem />
       <PieceItem />
       <PieceItem />
       <PieceItem />
       <PieceItem />
       <PieceItem />
-      <PieceItem />
-      <PieceItem />
+      <PieceItem /> */}
     </Container>
   );
 };

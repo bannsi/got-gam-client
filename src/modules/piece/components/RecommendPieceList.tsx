@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { RootState } from '../../../app/rootReducer';
 import PieceList from '../../../common/components/PieceList';
 import { Caption } from '../../../common/text/Caption';
+import { fetchMyPieceStart } from '../../myPage/utils/myPage.action';
+import { selectMyPieceList } from '../../myPage/utils/myPage.reducer';
 
 const RecommendPieceList = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMyPieceStart());
+  }, []);
+
+  const pieceList = useSelector((state: RootState) => selectMyPieceList(state));
+
   return (
     <Container>
       <Recommend>
@@ -11,7 +22,7 @@ const RecommendPieceList = () => {
         <Caption>의 다른 사진도 구경해볼까요?</Caption>
       </Recommend>
 
-      <PieceList />
+      <PieceList list={pieceList} />
     </Container>
   );
 };
@@ -27,5 +38,5 @@ const Container = styled.div`
 `;
 const Recommend = styled.div`
   display: flex;
-  margin: 16px 0;
+  margin: 16px;
 `;

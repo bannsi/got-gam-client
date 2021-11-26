@@ -1,27 +1,45 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { Piece } from '../../modules/piece/utils/piece.interface';
 import ArchiveButton from '../buttons/ArchiveButton';
 
-const PieceItem = () => {
+interface PieceItemProps {
+  piece: Piece;
+}
+
+const PieceItem = ({ piece }: PieceItemProps) => {
   const [isArchived, setIsArchived] = useState(false);
   const onArchive = () => {
     setIsArchived(!isArchived);
   };
+  const navigate = useNavigate();
 
   return (
-    <Container>
+    <ContainerBox>
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
-    </Container>
+      <Container
+        src={piece?.images[0]}
+        onClick={() => navigate(`/piece/${piece.peiceId}`)}
+      ></Container>
+    </ContainerBox>
   );
 };
 
 export default PieceItem;
 
-const Container = styled.div`
+const ContainerBox = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-end;
-  padding: 8px;
-  min-width: 186px;
-  min-height: 186px;
+  width: calc(50vw - 1.5px);
+  height: calc(50vw - 1.5px);
+  /* min-width: 186px;
+  min-height: 186px; */
+`;
+
+const Container = styled.img`
+  width: 100%;
+  height: 100%;
   background: #cccccc;
 `;

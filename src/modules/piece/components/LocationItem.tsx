@@ -4,15 +4,20 @@ import ArrowIcon from '../../../common/icons/ArrowIcon';
 import LocationIcon from '../../../common/icons/LocationIcon';
 import { ButtonText } from '../../../common/text/ButtonText';
 import { Caption } from '../../../common/text/Caption';
+import { Piece } from '../utils/piece.interface';
 
-const LocationItem = () => {
+interface LocationItemProps {
+  piece: Piece;
+}
+
+const LocationItem = ({ piece }: LocationItemProps) => {
   return (
-    <Container>
+    <Container onClick={() => window.open(piece.placeUrl)}>
       <Content>
         <LocationIcon />
         <Place>
-          <ButtonText className="place">부산대학교</ButtonText>
-          <Caption>부산광역시 금정구 부산대학로 63번길 2</Caption>
+          <ButtonText className="place">{piece.address}</ButtonText>
+          <Caption>{piece.addressDetail}</Caption>
         </Place>
       </Content>
       <ArrowIcon />

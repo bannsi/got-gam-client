@@ -4,12 +4,13 @@ import { SubTitle } from '../../../common/text/SubTitle';
 
 interface FolderItemProps {
   onClick: () => void;
+  title: string;
 }
 
-const FolderItem = ({ onClick }: FolderItemProps) => {
+const FolderItem = ({ title, onClick }: FolderItemProps) => {
   return (
     <Container onClick={onClick}>
-      <SubTitle type="2">Title</SubTitle>
+      <SubTitle type="2">{title}</SubTitle>
     </Container>
   );
 };

@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import PieceItem from '../../../common/components/PieceItem';
 import PieceList from '../../../common/components/PieceList';
 import { SubTitle } from '../../../common/text/SubTitle';
+import { Piece } from '../../piece/utils/piece.interface';
 
-const BestPieces = () => {
+interface BestPiecesProps {
+  pieceList: Piece[];
+}
+
+const BestPieces = ({ pieceList }: BestPiecesProps) => {
   return (
     <Container>
       <Label type={'1'}>베스트 조각</Label>
-      <PieceList />
+      <PieceList list={pieceList} />
     </Container>
   );
 };

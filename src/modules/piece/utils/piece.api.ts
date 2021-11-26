@@ -1,10 +1,10 @@
 import makeRequest from '../../../app/makeRequest';
-import { newPiece, Piece } from './piece.interface';
+import { Keyword, newPiece, Piece, Who } from './piece.interface';
 
 // export const fetchPieceAPI = () => makeRequest<>({});
 export const makePieceAPI = (newPiece: newPiece) =>
   makeRequest<Piece>({
-    url: 'piece/v1/',
+    url: 'peices/v1/',
     method: 'post',
     body: {
       images: newPiece.images,
@@ -19,3 +19,23 @@ export const makePieceAPI = (newPiece: newPiece) =>
       whos: newPiece.whos
     }
   });
+
+export const fetchKeywordsAPI = () =>
+  makeRequest<KeywordResponse>({
+    url: '/peices/v1/keyword/',
+    method: 'get'
+  });
+export const fetchWhosAPI = () =>
+  makeRequest<WhoResponse>({
+    url: '/peices/v1/who/',
+    method: 'get'
+  });
+
+interface KeywordResponse {
+  message: string;
+  body: Keyword[];
+}
+interface WhoResponse {
+  message: string;
+  body: Who[];
+}

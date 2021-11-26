@@ -1,8 +1,12 @@
-import { resolve } from 'dns';
 import kakaoApiRequest from '../../../../app/kakaoApiRequest';
 import { LocationResponse } from './LocationResponse';
 
-export const getPlaceListAPI = async (lat: number, lng: number, code: string) => {
+export const getPlaceListAPI = async (
+  lat: number,
+  lng: number,
+  code: string,
+  setFunc: (res: LocationResponse[]) => void
+) => {
   const data = await kakaoApiRequest<Response>({
     method: 'get',
     url: '/v2/local/search/category',
@@ -13,15 +17,11 @@ export const getPlaceListAPI = async (lat: number, lng: number, code: string) =>
       radius: 500,
       size: 3
     }
-  }).then((data) => {
-    const { documents } = data;
-    console.log(documents);
-    return documents;
   });
-
-  return await data;
+  const { documents } = await data;
+  await setFunc(documents);
+  return await documents;
 };
-// return Promise.all(promises).then((value) => );
 
 interface Response {
   documents: LocationResponse[];

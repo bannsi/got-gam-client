@@ -5,7 +5,7 @@ import BackIcon from '../../../common/icons/BackIcon';
 import { SubTitle } from '../../../common/text/SubTitle';
 
 interface ArchiveHeaderProps {
-  folder: any;
+  folder: string | undefined;
 }
 interface ContainerProps {
   isFolder: boolean;
@@ -16,7 +16,7 @@ const ArchiveHeader = ({ folder }: ArchiveHeaderProps) => {
   return (
     <Container isFolder={!!folder}>
       {folder && <BackIcon onBack={() => navigator('/archive')} />}
-      <SubTitle type="1">{folder ? folder.title : '아카이브'}</SubTitle>
+      <SubTitle type="1">{folder ? folder : '아카이브'}</SubTitle>
     </Container>
   );
 };

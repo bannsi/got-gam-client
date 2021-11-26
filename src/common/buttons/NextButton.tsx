@@ -8,9 +8,14 @@ interface NextButtonProps {
   disable?: boolean;
 }
 
-const NextButton = ({ text, onNext }: NextButtonProps) => {
+const NextButton = ({ disable, text, onNext }: NextButtonProps) => {
   return (
-    <Container onClick={onNext}>
+    <Container
+      disable={disable}
+      onClick={() => {
+        if (!disable) onNext();
+      }}
+    >
       <ButtonText>{text}</ButtonText>
     </Container>
   );
@@ -22,7 +27,7 @@ interface ContainerProps {
   disable?: boolean;
 }
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.button<ContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;

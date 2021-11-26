@@ -11,8 +11,10 @@ export interface ApiOption {
 }
 
 const makeRequest = async <T>({ url, method, headers, body, query }: ApiOption): Promise<T> => {
-  let token = null;
-  token = tokenStore.get();
+  // let token = null;
+  // token = tokenStore.get();
+  const token =
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxOTk4MjY2MDQ1IiwiZXhwIjoxNjQ1NTI2NjE4LCJpYXQiOjE2Mzc3NTA2MTh9.q5rfGr8NZD69yZhXS5FUfWmj81NJCeru15Tbgibda9_P1PO_TiweW5OIz20Dr1zTpwMJsEa7UxncLAYsjs3hSg';
   let response = {} as AxiosResponse;
   try {
     const requestConfig: AxiosRequestConfig = {
@@ -22,9 +24,9 @@ const makeRequest = async <T>({ url, method, headers, body, query }: ApiOption):
       params: query
     };
     requestConfig.headers = headers ? { ...headers } : {};
-    if (token) {
-      requestConfig.headers.Authorization = `Bearer ${token}`;
-    }
+    // if (token) {
+    requestConfig.headers.Authorization = `Bearer ${token}`;
+    // }
     response = await axios.request<T>(requestConfig);
   } catch (error) {
     console.log(error);

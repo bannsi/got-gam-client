@@ -13,20 +13,63 @@ interface WhereProps {
 }
 
 const Where = ({ lat, lng, setLocation, onNext }: WhereProps) => {
-  const [placeList, setPlaceList] = useState<LocationResponse[]>([]);
-  const codeList = ['AT4', 'AD5', 'FD6', 'CE7', 'CT1'];
+  const [AT4, setAT4] = useState<LocationResponse[]>([]);
+  const [AD5, setAD5] = useState<LocationResponse[]>([]);
+  const [FD6, setFD6] = useState<LocationResponse[]>([]);
+  const [CE7, setCE7] = useState<LocationResponse[]>([]);
+  const [CT1, setCT1] = useState<LocationResponse[]>([]);
+
   useEffect(() => {
-    codeList.map(async (code) => {
-      const data = await getPlaceListAPI(lat, lng, code);
-      await ('placelist' + placeList);
-      await setPlaceList([...data]);
-      return data;
-    });
+    getPlaceListAPI(lat, lng, 'AT4', setAT4);
+    getPlaceListAPI(lat, lng, 'AD5', setAD5);
+    getPlaceListAPI(lat, lng, 'FD6', setFD6);
+    getPlaceListAPI(lat, lng, 'CE7', setCE7);
+    getPlaceListAPI(lat, lng, 'CT1', setCT1);
   }, []);
   return (
     <Container>
       <SearchInput />
-      {placeList.map((place) => (
+      {AT4.map((place) => (
+        <LocationItem
+          onClick={() => {
+            setLocation(place);
+            onNext();
+          }}
+          key={place.id}
+          location={place}
+        />
+      ))}
+      {AD5.map((place) => (
+        <LocationItem
+          onClick={() => {
+            setLocation(place);
+            onNext();
+          }}
+          key={place.id}
+          location={place}
+        />
+      ))}
+      {FD6.map((place) => (
+        <LocationItem
+          onClick={() => {
+            setLocation(place);
+            onNext();
+          }}
+          key={place.id}
+          location={place}
+        />
+      ))}
+      {CE7.map((place) => (
+        <LocationItem
+          onClick={() => {
+            setLocation(place);
+            onNext();
+          }}
+          key={place.id}
+          location={place}
+        />
+      ))}
+      {CT1.map((place) => (
         <LocationItem
           onClick={() => {
             setLocation(place);
