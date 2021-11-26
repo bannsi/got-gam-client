@@ -38,6 +38,8 @@
 }
 
 @import '~antd/dist/antd.css';
+@import 'react-date-range/dist/styles.css'; 
+@import 'react-date-range/dist/theme/default.css'; 
 
 .ReactModal__Overlay {
     opacity: 0;

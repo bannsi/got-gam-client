@@ -18,7 +18,6 @@ interface HowProps {
 }
 const dateFormat = 'YYYY년 MM월 DD일';
 
-const companionList = ['친구와', '연인과', '선/후배와', '형제/자매와', '부모님과', '가족과'];
 const Who = ({ locationName, date, onNext, companion, setCompanion }: HowProps) => {
   const dispatch = useDispatch();
   const keywords = useSelector((state: RootState) => selectWhos(state));
