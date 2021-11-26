@@ -6,7 +6,7 @@ const Follow = () => {
   const [follow, setFollow] = useState(false);
   return (
     <Container onClick={() => setFollow(!follow)}>
-      <Caption>{follow ? '팔로우' : '언팔로우'}</Caption>
+      <Caption className="text">{follow ? '팔로우' : '언팔로우'}</Caption>
     </Container>
   );
 };
@@ -19,8 +19,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #cccccc;
   border-radius: 8px;
-  color: #ffffff;
-  margin-left: auto;
+  .text {
+    color: #ffffff;
+  }
+  background: #000000;
+  border-radius: 6px;
 `;

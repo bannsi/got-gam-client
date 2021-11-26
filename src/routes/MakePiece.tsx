@@ -8,22 +8,30 @@ import MakerHeader from '../modules/make-piece/components/MakerHeader';
 import When from '../modules/make-piece/components/When';
 import Where from '../modules/make-piece/components/Where';
 import Who from '../modules/make-piece/components/Who';
-import { Location } from '../modules/make-piece/utils/Location.interface';
-
+import moment, { Moment } from 'moment';
+import { useNavigate } from 'react-router-dom';
+import { LocationResponse } from '../modules/make-piece/utils/functions/LocationResponse';
+import { Location } from '../modules/make-piece/utils/functions/Location.interface';
 const MakePiece = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState(0);
   const [imgLocation, setImgLocation] = useState<Location>({
     lat: 0,
     lng: 0
   });
-  const [location, setLocation] = useState<Location>({
-    lat: 0,
-    lng: 0
-  });
+  const [location, setLocation] = useState<LocationResponse>();
   const [fileList, setFileList] = useState<File[]>([]);
+  const [date, setDate] = useState('');
+  const [keywords, setKeywords] = useState<string[]>([]);
+  const [companion, setCompanion] = useState<string[]>([]);
+  const [description, setDescription] = useState<string>('');
+
   const onNext = () => {
     setForm(form + 1);
   };
+
+  // const onSubmit = () => {};
+
   const formList = [
     {
       name: 'img',
@@ -33,6 +41,7 @@ const MakePiece = () => {
           setFileList={setFileList}
           onNext={onNext}
           setImgLocation={setImgLocation}
+          setDate={setDate}
         />
       )
     },
@@ -47,15 +56,57 @@ const MakePiece = () => {
         />
       )
     },
-    { name: 'when', element: <When /> },
-    { name: 'how', element: <How /> },
-    { name: 'who', element: <Who /> },
-    { name: 'desc', element: <Description /> }
+    {
+      name: 'when',
+      element: (
+        <When
+          fileList={fileList}
+          date={date}
+          setDate={setDate}
+          locationName={location?.place_name}
+          onNext={onNext}
+        />
+      )
+    },
+    {
+      name: 'how',
+      element: (
+        <How
+          date={date}
+          keywords={keywords}
+          setKeywords={setKeywords}
+          locationName={location?.place_name}
+          onNext={onNext}
+        />
+      )
+    },
+    {
+      name: 'who',
+      element: (
+        <Who
+          date={date}
+          companion={companion}
+          setCompanion={setCompanion}
+          locationName={location?.place_name}
+          onNext={onNext}
+        />
+      )
+    },
+    {
+      name: 'desc',
+      element: (
+        <Description
+          description={description}
+          setDescription={setDescription}
+          onNext={() => navigate(-1)}
+        />
+      )
+    }
   ];
   return (
     <Container>
       <MakerHeader setForm={setForm} form={form} />
-      {formList[form].element}
+      <ElementContainer>{formList[form].element}</ElementContainer>
     </Container>
   );
 };
@@ -63,6 +114,14 @@ const MakePiece = () => {
 export default MakePiece;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
+
+const ElementContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  overflow-y: scroll;
+  padding: 16px;
 `;

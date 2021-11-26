@@ -20,7 +20,6 @@ const Container = styled.div`
   align-items: center;
   padding: 0 16px;
   min-height: 53px;
-  margin-top: 24px;
   svg {
     width: 24px;
     height: 24px;

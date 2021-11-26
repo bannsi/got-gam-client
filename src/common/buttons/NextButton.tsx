@@ -5,6 +5,7 @@ import { ButtonText } from '../text/ButtonText';
 interface NextButtonProps {
   text: string;
   onNext: () => void;
+  disable?: boolean;
 }
 
 const NextButton = ({ text, onNext }: NextButtonProps) => {
@@ -17,14 +18,23 @@ const NextButton = ({ text, onNext }: NextButtonProps) => {
 
 export default NextButton;
 
-const Container = styled.div`
+interface ContainerProps {
+  disable?: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 53px;
   width: 100%;
-  /* margin: 0 16px; */
   color: #ffffff;
-  background: #cccccc;
+  /* margin: 0 16px; */
+  ${(props) =>
+    props.disable
+      ? `
+  background: #cccccc;`
+      : `background: #000000;`}
+
   border-radius: 8px;
 `;

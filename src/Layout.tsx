@@ -45,7 +45,7 @@ const Layout = () => {
       <Modal onClose={() => setVisible(false)} visible={visible}>
         <ModalContent>
           <SubTitle className="title" type="1">
-            폴더 생성
+            기록하기
           </SubTitle>
           <ModalItem onClick={() => navigator('/make-piece')}>
             <ButtonText>조각</ButtonText>
@@ -76,7 +76,7 @@ const Navigation = styled.nav`
   left: 0;
   display: flex;
   width: 100%;
-  height: 57px;
+  height: 56px;
   align-items: center;
   justify-content: space-around;
   background: #ffffff;

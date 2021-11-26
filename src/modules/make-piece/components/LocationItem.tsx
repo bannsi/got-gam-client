@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ButtonText } from '../../../common/text/ButtonText';
 import { Caption } from '../../../common/text/Caption';
-import { LocationResponse } from '../utils/LocationResponse';
+import { LocationResponse } from '../utils/functions/LocationResponse';
 
 interface LocationItemProps {
   location: LocationResponse;

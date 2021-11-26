@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchIcon from '../../../common/icons/SearchIcon';
+import SettingIcon from '../../../common/icons/SettingIcon';
+import { SubTitle } from '../../../common/text/SubTitle';
 
 const MyPageHeader = () => {
   return (
     <Container>
-      <SearchIcon /> 설정아이콘필요
+      <SubTitle type="2">내 조각</SubTitle>
+      <SettingIcon />
     </Container>
   );
 };
@@ -14,14 +17,8 @@ export default MyPageHeader;
 
 const Container = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-  min-height: 53px;
-  margin-top: 24px;
-  svg {
-    width: 24px;
-    height: 24px;
-    margin-left: 13px;
-  }
+  padding-left: 16px;
+  min-height: 48px;
 `;
