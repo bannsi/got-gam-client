@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { selectCollectionById } from '../modules/myPage/utils/myPage.reducer';
 import Header from '../modules/collections/components/Header';
+import CollectionContent from '../modules/collections/CollectionContent';
 const Collection = () => {
   const createdCollection = useSelector((state: RootState) => selectCollection(state));
   const navigate = useNavigate();
@@ -25,9 +26,20 @@ const Collection = () => {
   return collection ? (
     <Container>
       <Header collection={collection}></Header>
+      {collection.items ? (
+        <CollectionContent
+          items={collection.items}
+          startDate={collection.startDate}
+          endDate={collection.endDate}
+        />
+      ) : (
+        <></>
+      )}
     </Container>
   ) : createdCollection ? (
-    <Container></Container>
+    <Container>
+      <Header collection={createdCollection}></Header>
+    </Container>
   ) : (
     <></>
   );

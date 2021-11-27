@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
+import { CollectionItemType } from '../../myPage/utils/myPage.api';
 
 import { Collection, CreatedCollection, NewCollection } from './collection.interface';
 
@@ -12,7 +13,7 @@ export const makeCollectionStart = createAction(
 );
 export const makeCollectionSuccess = createAction(
   'collection/makeCollectionSuccess',
-  (collection: CreatedCollection) => {
+  (collection: CollectionItemType) => {
     return {
       payload: collection
     };

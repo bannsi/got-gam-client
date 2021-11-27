@@ -46,3 +46,4 @@ export const selectPieceById = (state: RootState, id: number) =>
   state.myPage.pieceList.find((ele) => ele.peiceId === id);
 export const selectCollectionById = (state: RootState, id: number) =>
   state.myPage.collectionList.find((ele) => ele.id === id);
+export const selectMyInfo = (state: RootState) => state.myPage.myInfo;

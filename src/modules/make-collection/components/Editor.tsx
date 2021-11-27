@@ -28,7 +28,7 @@ function dateRange(startDate: Date, endDate: Date, steps = 1) {
 
   while (currentDate <= new Date(endDate)) {
     dateArray.push(new Date(currentDate));
-    currentDate.setUTCDate(currentDate.getUTCDate() + steps);
+    currentDate.setDate(currentDate.getDate() + steps);
   }
 
   return dateArray;
@@ -187,6 +187,25 @@ const DateRange = styled.div`
   /* border-bottom: 1px solid#CCCCCC; */
 `;
 
+const DateText = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  color: #f45400;
+`;
+const DateSelect = styled.div<SelectProps>`
+  height: 64px;
+  width: 107px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .date {
+    color: ${(props) => (props.selected ? '#f45400' : '#CCCCCC')};
+  }
+  border-bottom: ${(props) => (props.selected ? '1px solid #f45400' : '1px solid#CCCCCC')};
+`;
 const Map = styled.div`
   display: flex;
   min-height: 146px;
@@ -204,26 +223,6 @@ const Content = styled.div`
   padding: 16px;
 `;
 
-const DateText = styled.div`
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  color: #f45400;
-`;
-
 interface SelectProps {
   selected: boolean;
 }
-const DateSelect = styled.div<SelectProps>`
-  height: 64px;
-  width: 107px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  .date {
-    color: ${(props) => (props.selected ? '#f45400' : '#CCCCCC')};
-  }
-  border-bottom: ${(props) => (props.selected ? '1px solid #f45400' : '1px solid#CCCCCC')};
-`;

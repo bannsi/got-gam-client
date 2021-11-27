@@ -37,7 +37,7 @@ export interface CollectionItemType {
 
 export interface PieceItem {
   content: string;
-  piece: Piece;
+  peice: Piece;
 }
 
 export interface MyInfoResponse {

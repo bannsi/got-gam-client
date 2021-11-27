@@ -3,6 +3,7 @@ import { call } from 'typed-redux-saga';
 import {
   fetchMyCollectionStart,
   fetchMyCollectionSuccess,
+  fetchMyInfoSuccess,
   fetchMyPieceStart,
   fetchMyPieceSuccess
 } from './myPage.action';
@@ -25,6 +26,7 @@ function* fetchMyPieceSaga() {
 function* fetchMyCollectionSaga() {
   try {
     const userInfo: MyInfoResponse = yield* call(fetchMyInfoAPI);
+    yield put(fetchMyInfoSuccess(userInfo.body));
     const { body } = yield call(fetchMyCollectionAPI, userInfo.body.kakaoId);
     console.log(body);
     yield put(fetchMyCollectionSuccess(body));

@@ -12,21 +12,21 @@ export interface newPiece {
 }
 
 export interface Piece {
-  peiceId: number;
-  images: string[];
-  date: string;
-  user: {
-    nickname: string;
-  };
-  content: string;
-  latitude: number;
-  longitude: number;
   address: string;
   addressDetail: string;
+  content: string;
+  date: string;
+  peiceId: number;
+  images: string[];
+  user?: {
+    nickname: string;
+  };
   keywords: string[];
+  latitude: number;
+  longitude: number;
   placeUrl: string;
+  createdAt?: string;
   whos: string[];
-  createdAt: string;
 }
 
 export interface Keyword {

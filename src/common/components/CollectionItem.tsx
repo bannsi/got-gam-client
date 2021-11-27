@@ -15,10 +15,15 @@ const CollectionItem = ({ item }: CollectionItemProps) => {
   const onArchive = () => {
     setIsArchived(!isArchived);
   };
+
   return (
     <ContainerBox>
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
-      <Container onClick={() => navigate(`/collection/${item.id}`)} className="item">
+      <Container
+        style={{ backgroundImage: `url(${item.coverImage})` }}
+        onClick={() => navigate(`/collection/${item.id}`)}
+        className="item"
+      >
         <Content>
           <Title type={'6'}>{item.title}</Title>
           <SubTitle type={'2'}>부산</SubTitle>
@@ -52,6 +57,7 @@ const Container = styled.div`
   border-radius: 8px;
   justify-content: flex-end;
   color: #ffffff;
+  background-size: cover;
 `;
 const Content = styled.div`
   width: 100%;

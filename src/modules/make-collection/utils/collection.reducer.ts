@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { RootState } from '../../../app/rootReducer';
+import { CollectionItemType } from '../../myPage/utils/myPage.api';
 import { makeCollectionSuccess } from './collection.action';
-import { Collection, CreatedCollection } from './collection.interface';
 
 interface initialStateProps {
-  collection: CreatedCollection | null;
+  collection: CollectionItemType | null;
 }
 
 const initialState: initialStateProps = {

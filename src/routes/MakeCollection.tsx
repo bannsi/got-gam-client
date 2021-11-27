@@ -37,8 +37,8 @@ const MakeCollection = () => {
     dispatch(
       makeCollectionStart({
         title: title,
-        startDate: date[0].startDate.toUTCString(),
-        endDate: date[0].endDate.toUTCString(),
+        startDate: date[0].startDate.toISOString(),
+        endDate: date[0].endDate.toISOString(),
         coverImage: selectedCover,
         items: items
       })

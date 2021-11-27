@@ -3,14 +3,15 @@ import styled from 'styled-components';
 import { Piece } from '../utils/piece.interface';
 
 interface PieceDetailItemProps {
-  piece: Piece;
+  piece: any;
 }
 
 const PieceDetailItem = ({ piece }: PieceDetailItemProps) => {
+  console.log(piece);
   return (
     <Container>
-      <Img src={piece.images[0]}></Img>
-      <Desc>{piece.content}</Desc>
+      <Img src={piece?.images[0]}></Img>
+      <Desc>{piece?.content}</Desc>
     </Container>
   );
 };
