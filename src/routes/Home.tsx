@@ -6,23 +6,24 @@ import BestPieces from '../modules/home/components/BestPieces';
 import DDay from '../modules/home/components/DDay';
 import Header from '../common/components/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMyPieceStart } from '../modules/myPage/utils/myPage.action';
+import { fetchMyCollectionStart, fetchMyPieceStart } from '../modules/myPage/utils/myPage.action';
 import { RootState } from '../app/rootReducer';
-import { selectMyPieceList } from '../modules/myPage/utils/myPage.reducer';
+import { selectMyCollectionList, selectMyPieceList } from '../modules/myPage/utils/myPage.reducer';
 
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMyPieceStart());
+    dispatch(fetchMyCollectionStart());
   }, []);
 
   const pieceList = useSelector((state: RootState) => selectMyPieceList(state));
-
+  const collectionList = useSelector((state: RootState) => selectMyCollectionList(state));
   return (
     <Container>
       <Header />
       <DDay></DDay>
-      <BestCollections />
+      <BestCollections list={collectionList} />
       <BestPieces pieceList={pieceList} />
       <BestPieceMakers />
     </Container>

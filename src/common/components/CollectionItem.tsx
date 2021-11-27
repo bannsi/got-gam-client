@@ -15,7 +15,7 @@ const CollectionItem = ({ item }: CollectionItemProps) => {
   const onArchive = () => {
     setIsArchived(!isArchived);
   };
-
+  console.log(item.id);
   return (
     <ContainerBox>
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />

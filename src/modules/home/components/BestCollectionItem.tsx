@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import ArchiveButton from '../../../common/buttons/ArchiveButton';
 import { Headline } from '../../../common/text/Headline';
 import { SubTitle } from '../../../common/text/SubTitle';
+import { CollectionItemType } from '../../myPage/utils/myPage.api';
 
-const BestCollectionItem = () => {
+interface CollectionItemProps {
+  item: CollectionItemType;
+}
+
+const BestCollectionItem = ({ item }: CollectionItemProps) => {
   const [isArchived, setIsArchived] = useState(false);
+  const navigate = useNavigate();
   const onArchive = () => {
     setIsArchived(!isArchived);
   };
   return (
     <ContainerBox className="item">
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
-      <Container>
+      <Container
+        style={{ backgroundImage: `url(${item.coverImage})` }}
+        onClick={() => navigate(`/collection/${item.id}`)}
+      >
         <Content>
-          <Title type={'6'}>제주 첫 여행</Title>
+          <Title type={'6'}>{item.title}</Title>
           <SubTitle type={'2'}>제주</SubTitle>
         </Content>
       </Container>
@@ -35,8 +45,8 @@ const ContainerBox = styled.div`
   position: relative;
 `;
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 304px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -44,6 +54,7 @@ const Container = styled.div`
   border-radius: 8px;
   justify-content: flex-end;
   color: #ffffff;
+  background-size: cover;
 `;
 const Content = styled.div`
   width: 100%;

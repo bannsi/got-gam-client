@@ -6,7 +6,6 @@ import moment from 'moment';
 import { Overline } from '../../common/text/Overline';
 import PieceDetailItem from '../piece/components/PieceDetailItem';
 import { Piece } from '../piece/utils/piece.interface';
-
 function dateRange(startDate: string, endDate: string, steps = 1) {
   const dateArray = [];
   const currentDate = new Date(startDate);
@@ -43,12 +42,10 @@ const CollectionContent = ({ items, startDate, endDate }: CollectionContentProps
     const container = document.getElementById('mapper');
     const options = {
       center: new window.kakao.maps.LatLng(avgLatLng(items)[0], avgLatLng(items)[1]),
-      level: 6
+      level: 20
     };
-    console.log(items);
     const map = new window.kakao.maps.Map(container, options);
-    items.forEach((list) => {
-      console.log(list);
+    newList.forEach((list) => {
       const markerPosition = new window.kakao.maps.LatLng(
         list.peice?.latitude,
         list.peice?.longitude
@@ -58,7 +55,8 @@ const CollectionContent = ({ items, startDate, endDate }: CollectionContentProps
       });
       marker.setMap(map);
     });
-  }, []);
+  }, [current]);
+
   useEffect(() => {
     setNewList(
       items.filter(

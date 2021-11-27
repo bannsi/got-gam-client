@@ -24,8 +24,8 @@ const MakeCollection = () => {
 
   const [date, setDate] = useState([
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: new Date('2019-08-02'),
+      endDate: new Date('2019-08-02'),
       key: 'selection'
     }
   ]);

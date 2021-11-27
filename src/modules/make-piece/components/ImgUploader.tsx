@@ -55,7 +55,7 @@ const ImgUploader = ({
   }
   return (
     <Container>
-      <Label htmlFor="file">이미지 업로드</Label>
+      {/* <Label htmlFor="file">이미지 업로드</Label> */}
       <input
         id="file"
         type="file"

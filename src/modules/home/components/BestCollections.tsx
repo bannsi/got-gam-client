@@ -1,16 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SubTitle } from '../../../common/text/SubTitle';
+import { CollectionItemType } from '../../myPage/utils/myPage.api';
 import BestCollectionItem from './BestCollectionItem';
-const BestCollections = () => {
+
+interface BestCollectionsProps {
+  list: CollectionItemType[];
+}
+
+const BestCollections = ({ list }: BestCollectionsProps) => {
   return (
     <Container>
       <Label type={'1'}>베스트 조각 모음</Label>
       <CollectionList>
-        <BestCollectionItem />
-        <BestCollectionItem />
-        <BestCollectionItem />
-        <BestCollectionItem />
+        {list.map((item) => (
+          <BestCollectionItem key={item.id} item={item} />
+        ))}
       </CollectionList>
     </Container>
   );
