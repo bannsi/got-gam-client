@@ -33,7 +33,6 @@ const ContainerBox = styled.div`
   left: 0px;
   top: 0px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(.jpg);
-  border-radius: 8px;
 `;
 
 const Overlay = styled.div`
@@ -42,9 +41,12 @@ const Overlay = styled.div`
   height: 304px;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.2);
+
+  border-radius: 8px;
 `;
 const Content = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
 `;

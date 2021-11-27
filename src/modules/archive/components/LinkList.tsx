@@ -6,11 +6,9 @@ import YoutubeLinkItem from './YoutubeLinkItem';
 const LinkList = () => {
   return (
     <Container>
+      <LinkItem url={'https://jsksoft.tistory.com/16772'} />
       <YoutubeLinkItem />
-      <LinkItem />
-      <LinkItem />
-      <LinkItem />
-      <LinkItem />
+      <LinkItem url={'https://iriseun.tistory.com/92'} />
     </Container>
   );
 };

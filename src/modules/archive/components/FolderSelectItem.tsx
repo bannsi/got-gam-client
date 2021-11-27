@@ -6,12 +6,13 @@ interface FolderSelectItemProps {
   selected: boolean;
   onClick: () => void;
   title: string;
+  thumbnail: string;
 }
 
-const FolderSelectItem = ({ title, selected, onClick }: FolderSelectItemProps) => {
+const FolderSelectItem = ({ title, thumbnail, selected, onClick }: FolderSelectItemProps) => {
   return (
     <Container selected={selected} onClick={onClick}>
-      <Block></Block>
+      <Block src={thumbnail}></Block>
       <Caption>{title} </Caption>
     </Container>
   );
@@ -33,8 +34,9 @@ const Container = styled.div<ContainerProps>`
   ${(props) => (props.selected ? 'background: #F7F7F7;' : 'background: #FFFFFF;')}
 `;
 
-const Block = styled.div`
+const Block = styled.img`
   display: flex;
+  object-fit: cover;
   align-items: center;
   justify-content: center;
   width: 36px;

@@ -1,15 +1,19 @@
+import { time } from 'console';
 import React from 'react';
 import styled from 'styled-components';
 import { Piece } from '../../piece/utils/piece.interface';
+import { Collection } from '../utils/collection.interface';
 import PieceSelectorItem from './PieceSelectorItem';
 
 interface PieceListProps {
   list: Piece[];
   selectList: Piece[];
   setSelectList: (id: Piece[]) => void;
+  setItems: (items: Collection[]) => void;
+  items: Collection[];
 }
 
-const PieceSelector = ({ selectList, setSelectList, list }: PieceListProps) => {
+const PieceSelector = ({ items, setItems, selectList, setSelectList, list }: PieceListProps) => {
   console.log(selectList);
   return (
     <Container>
@@ -18,9 +22,18 @@ const PieceSelector = ({ selectList, setSelectList, list }: PieceListProps) => {
           onSelect={() => {
             if (!selectList.includes(item)) {
               setSelectList([...selectList, item]);
+              const collectItem = {
+                peiceId: item.peiceId,
+                date: item.date,
+                orderNum: 0,
+                content: ''
+              };
+              setItems([...items, collectItem]);
             } else {
               const newList = selectList.filter((ele) => ele !== item);
               setSelectList(newList);
+              const newItems = items.filter((ele) => ele.peiceId !== item.peiceId);
+              setItems(newItems);
             }
           }}
           selected={selectList.includes(item)}

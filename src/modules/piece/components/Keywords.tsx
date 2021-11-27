@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Piece } from '../utils/piece.interface';
 
-const Keywords = () => {
+interface KeywordProps {
+  piece: Piece;
+}
+const Keywords = ({ piece }: KeywordProps) => {
   return (
     <Container>
-      <Keyword>키워드</Keyword>
-      <Keyword>키워드</Keyword>
-      <Keyword>키워드</Keyword>
-      <Keyword>키워드</Keyword>
-      <Keyword>키워드</Keyword>
-      <Keyword>키워드</Keyword>
+      {piece.keywords.map((key) => (
+        <Keyword key={key}>{key}</Keyword>
+      ))}
+      {piece.whos.map((key) => (
+        <Keyword key={key}>{key}</Keyword>
+      ))}
     </Container>
   );
 };

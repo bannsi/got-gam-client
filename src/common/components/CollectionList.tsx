@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CollectionItemType } from '../../modules/myPage/utils/myPage.api';
 import CollectionItem from './CollectionItem';
 
-const CollectionList = () => {
+interface CollectionListProps {
+  list: CollectionItemType[];
+}
+
+const CollectionList = ({ list }: CollectionListProps) => {
   return (
     <Container>
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
+      {list.map((item) => (
+        <CollectionItem key={item.id} item={item} />
+      ))}
     </Container>
   );
 };

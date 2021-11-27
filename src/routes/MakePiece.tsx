@@ -64,6 +64,7 @@ const MakePiece = () => {
             ['Content-Type']: `multipart/form-data`
           }
         });
+        console.log(res);
         await dispatch(makePieceSuccess(res.data.body));
         await navigate(`/piece/${res.data.body.peiceId}`);
       } catch (e) {
@@ -140,7 +141,6 @@ const MakePiece = () => {
           setDescription={setDescription}
           onNext={() => {
             onSubmit();
-            navigate(-1);
           }}
         />
       )

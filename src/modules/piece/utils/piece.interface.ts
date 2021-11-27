@@ -15,6 +15,9 @@ export interface Piece {
   peiceId: number;
   images: string[];
   date: string;
+  user: {
+    nickname: string;
+  };
   content: string;
   latitude: number;
   longitude: number;

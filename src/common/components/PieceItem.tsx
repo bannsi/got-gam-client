@@ -42,4 +42,5 @@ const Container = styled.img`
   width: 100%;
   height: 100%;
   background: #cccccc;
+  object-fit: cover;
 `;

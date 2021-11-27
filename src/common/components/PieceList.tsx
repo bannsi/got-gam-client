@@ -8,20 +8,11 @@ interface PieceListProps {
 }
 
 const PieceList = ({ list }: PieceListProps) => {
-  console.log(list);
   return (
     <Container>
       {list.map((item) => (
         <PieceItem key={item.peiceId} piece={item} />
       ))}
-      {/* <PieceItem />
-      <PieceItem />
-      <PieceItem />
-      <PieceItem />
-      <PieceItem />
-      <PieceItem />
-      <PieceItem />
-      <PieceItem /> */}
     </Container>
   );
 };

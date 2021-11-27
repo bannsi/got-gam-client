@@ -55,7 +55,9 @@ const ImgUploader = ({
   }
   return (
     <Container>
+      <Label htmlFor="file">이미지 업로드</Label>
       <input
+        id="file"
         type="file"
         multiple
         accept="image/jpg, image/jpeg, image/png, image/gif, image/bmp , .heic"
@@ -78,4 +80,17 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+  /* input {
+    display: none;
+  } */
+`;
+
+const Label = styled.label`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  height: 54px;
 `;

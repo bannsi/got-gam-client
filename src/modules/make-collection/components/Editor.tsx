@@ -1,24 +1,62 @@
 /*global kakao*/
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PieceDetailItem from '../../piece/components/PieceDetailItem';
 import { Piece } from '../../piece/utils/piece.interface';
+import moment from 'moment';
+import { Overline } from '../../../common/text/Overline';
+import { Collection } from '../utils/collection.interface';
+import { select } from 'redux-saga/effects';
 interface EditorProps {
   dayCount: number;
   selectList: Piece[];
+  startDate: Date;
+  endDate: Date;
+  items: Collection[];
+  setItems: (items: Collection[]) => void;
+  title: string;
+  setTitle: (title: string) => void;
 }
 declare global {
   interface Window {
     kakao: any;
   }
 }
+function dateRange(startDate: Date, endDate: Date, steps = 1) {
+  const dateArray = [];
+  const currentDate = new Date(startDate);
+
+  while (currentDate <= new Date(endDate)) {
+    dateArray.push(new Date(currentDate));
+    currentDate.setUTCDate(currentDate.getUTCDate() + steps);
+  }
+
+  return dateArray;
+}
 
 const { kakao } = window;
-const Editor = ({ selectList }: EditorProps) => {
+const Editor = ({
+  title,
+  setTitle,
+  items,
+  setItems,
+  selectList,
+  startDate,
+  endDate
+}: EditorProps) => {
+  const [current, setCurrent] = useState(0);
+  const [newList, setNewList] = useState(
+    selectList.filter(
+      (piece) => moment(piece.date).format('YYYY-MM-DD') === moment(startDate).format('YYYY-MM-DD')
+    )
+  );
+  const dateArr = dateRange(startDate, endDate);
+
+  console.log(items);
   useEffect(() => {
     const container = document.getElementById('map');
     const options = {
-      center: new kakao.maps.LatLng(avgLatLng(selectList)[0], avgLatLng(selectList)[1]),
+      center: new kakao.maps.LatLng(avgLatLng(newList)[0], avgLatLng(newList)[1]),
       level: 6
     };
     const map = new kakao.maps.Map(container, options);
@@ -30,25 +68,65 @@ const Editor = ({ selectList }: EditorProps) => {
       marker.setMap(map);
     });
   }, []);
+  useEffect(() => {
+    setNewList(
+      selectList.filter(
+        (piece) =>
+          moment(piece.date).format('YYYY-MM-DD') === moment(dateArr[current]).format('YYYY-MM-DD')
+      )
+    );
+    newList.map((item, index) => {
+      const newItems = items.filter((ele) => ele.peiceId !== item.peiceId);
+      const newItem = items.filter((ele) => ele.peiceId === item.peiceId)[0];
+      setItems([
+        ...newItems,
+        { date: newItem.date, content: newItem.content, peiceId: newItem.peiceId, orderNum: index }
+      ]);
+    });
+  }, [current]);
   return (
     <Container>
-      <Input placeholder="제목을 작성하세요" />
+      <Input
+        value={title}
+        onChange={(e: any) => setTitle(e.target.value)}
+        placeholder="제목을 작성하세요"
+      />
+      <DateRange>
+        {dateArr.map((date, index) => (
+          <DateSelect key={index} selected={current === index} onClick={() => setCurrent(index)}>
+            <Overline>{index + 1}일차</Overline>
+            <DateText className="date">{moment(date).format('MM/DD')}</DateText>
+          </DateSelect>
+        ))}
+      </DateRange>
       <Map id="map" />
       <Content>
-        {selectList.map((piece) => (
-          <>
-            <TextArea
-              onKeyDown={(e: any) => {
-                e.target.style.height = 'inherit';
-                e.target.style.height = `${e.target.scrollHeight + 10}px`;
-                // In case you have a limitation
-                // e.target.style.height = `${Math.min(e.target.scrollHeight, limit)}px`;
-              }}
-              placeholder="기록을 입력하세요."
-            />
-            <PieceDetailItem key={piece.peiceId} piece={piece} />
-          </>
-        ))}
+        {newList.map((piece) => {
+          const newItem = items.filter((ele) => ele.peiceId === piece.peiceId)[0];
+          const newItems = items.filter((ele) => ele.peiceId !== piece.peiceId);
+          return (
+            <Box key={piece.peiceId}>
+              <TextArea
+                value={newItem.content}
+                onKeyDown={(e: any) => {
+                  e.target.style.height = 'inherit';
+                  e.target.style.height = `${e.target.scrollHeight + 10}px`;
+                }}
+                onChange={(e: any) => {
+                  setItems([
+                    ...newItems,
+                    {
+                      ...newItem,
+                      content: e.target.value
+                    }
+                  ]);
+                }}
+                placeholder="기록을 입력하세요."
+              />
+              <PieceDetailItem key={piece.peiceId} piece={piece} />
+            </Box>
+          );
+        })}
       </Content>
     </Container>
   );
@@ -63,7 +141,10 @@ function avgLatLng(pieceList: Piece[]) {
   pieceList.forEach((piece) => (lngSum = lngSum + piece.longitude));
   return [latSum / pieceList.length, lngSum / pieceList.length];
 }
-
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -101,11 +182,13 @@ const TextArea = styled.textarea`
 const DateRange = styled.div`
   display: flex;
   overflow: scroll;
+  height: 64px;
+  min-height: 64px;
+  /* border-bottom: 1px solid#CCCCCC; */
 `;
 
 const Map = styled.div`
   display: flex;
-  /* width: calc(100% - 32px); */
   min-height: 146px;
   margin: 16px;
   background: #ffffff;
@@ -119,4 +202,28 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px;
+`;
+
+const DateText = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  color: #f45400;
+`;
+
+interface SelectProps {
+  selected: boolean;
+}
+const DateSelect = styled.div<SelectProps>`
+  height: 64px;
+  width: 107px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .date {
+    color: ${(props) => (props.selected ? '#f45400' : '#CCCCCC')};
+  }
+  border-bottom: ${(props) => (props.selected ? '1px solid #f45400' : '1px solid#CCCCCC')};
 `;

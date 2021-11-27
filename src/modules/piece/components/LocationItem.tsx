@@ -12,7 +12,7 @@ interface LocationItemProps {
 
 const LocationItem = ({ piece }: LocationItemProps) => {
   return (
-    <Container onClick={() => window.open(piece.placeUrl)}>
+    <Container onClick={() => (window.location.href = piece.placeUrl)}>
       <Content>
         <LocationIcon />
         <Place>

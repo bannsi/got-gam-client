@@ -110,11 +110,17 @@ const Archive = () => {
           <AddFolderItem onClick={() => setKey('newfolder')} />
           <FolderSelectItem
             title={'부산'}
+            thumbnail={
+              'https://w.namu.la/s/31715e75ed8c895ea2d951c69f10b898bdc8bcf23495d7721cc38299a6c3200ed6b13691268191472e1900010f86499f54882be5b16f6e7e45a7c3dce94be17799e78b5a51e1903963021df44d55b3dfba34c177cdb1675399a5e82b38b1da64977a8412ea2ffd532a559cbd48e216dd'
+            }
             selected={folder === '부산'}
             onClick={() => setFolder('부산')}
           />
           <FolderSelectItem
             title={'제주'}
+            thumbnail={
+              'https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/1jPF/image/6dTBQAAJW6QLbLUaneCZWL3Vhf4.jpg'
+            }
             selected={folder === '제주'}
             onClick={() => setFolder('제주')}
           />
@@ -148,8 +154,20 @@ const Archive = () => {
         <Folder />
       ) : (
         <FolderContainer>
-          <FolderItem title="부산" onClick={() => navigate(`/archive/${'부산'}`)} />
-          <FolderItem title="제주" onClick={() => navigate(`/archive/${'제주'}`)} />
+          <FolderItem
+            title="부산"
+            thumbnail={
+              'https://w.namu.la/s/31715e75ed8c895ea2d951c69f10b898bdc8bcf23495d7721cc38299a6c3200ed6b13691268191472e1900010f86499f54882be5b16f6e7e45a7c3dce94be17799e78b5a51e1903963021df44d55b3dfba34c177cdb1675399a5e82b38b1da64977a8412ea2ffd532a559cbd48e216dd'
+            }
+            onClick={() => navigate(`/archive/${'부산'}`)}
+          />
+          <FolderItem
+            title="제주"
+            thumbnail={
+              'https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/1jPF/image/6dTBQAAJW6QLbLUaneCZWL3Vhf4.jpg'
+            }
+            onClick={() => navigate(`/archive/${'제주'}`)}
+          />
           <AddFolderButton
             onClick={() => {
               setKey('newfolder');

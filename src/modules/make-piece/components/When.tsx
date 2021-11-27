@@ -12,7 +12,7 @@ interface WhenProps {
   onNext: () => void;
 }
 
-const When = ({ locationName, date, onNext, setDate }: WhenProps) => {
+const When = ({ locationName, date, onNext, setDate, fileList }: WhenProps) => {
   function onChange(value: Moment | null, dateString: string) {
     console.log('Selected Time: ', value);
     console.log('Formatted Selected Time: ', dateString);
@@ -38,7 +38,10 @@ const When = ({ locationName, date, onNext, setDate }: WhenProps) => {
           <span className="black">{locationName}</span> <span className="gray">은</span>
         </Text>
       </TextContainer>
-      {/* <Images>{fileList.map((file) => {})}</Images> */}
+      <Images>
+        {fileList &&
+          [...fileList].map((file) => <Image key={file.name} src={URL.createObjectURL(file)} />)}
+      </Images>
       <NextButton
         text="다음"
         onNext={() => {
@@ -115,5 +118,9 @@ const Image = styled.img`
   width: 304px;
   height: 304px;
   border-radius: 8px;
+  min-width: 304px;
+  min-height: 304px;
+  border-radius: 8px;
+  margin-right: 16px;
   object-fit: cover;
 `;

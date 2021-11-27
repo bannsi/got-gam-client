@@ -10,7 +10,7 @@ interface TimeStampProps {
 
 const TimeStamp = ({ url, time }: TimeStampProps) => {
   return (
-    <Container onClick={() => window.open(`${timeParser(url, time)}`)}>
+    <Container onClick={() => (window.location.href = `${timeParser(url, time)}`)}>
       <Caption className="time">{time}</Caption>
     </Container>
   );

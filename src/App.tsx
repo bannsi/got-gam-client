@@ -13,6 +13,7 @@ import Login from './routes/Login';
 import Folder from './routes/Folder';
 import LoginRedirect from './routes/LoginRedirect';
 import MakeCollection from './routes/MakeCollection';
+import Collection from './routes/Collection';
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
       </Route>
       <Route path="piece" element={<Piece />}>
         <Route path=":pieceId" element={<Piece />}></Route>
+        {/* <Route path=":peiceId" element={<Peice />}></Route> */}
+      </Route>
+      <Route path="collection" element={<Collection />}>
+        <Route path=":collectionId" element={<Collection />}></Route>
         {/* <Route path=":peiceId" element={<Peice />}></Route> */}
       </Route>
       <Route path="make-piece" element={<MakePiece />} />

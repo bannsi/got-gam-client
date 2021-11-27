@@ -1,12 +1,20 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { Collection } from './collection.interface';
+import { Collection, CreatedCollection, NewCollection } from './collection.interface';
 
+export const makeCollectionStart = createAction(
+  'collection/makeCollectionStart',
+  (collection: NewCollection) => {
+    return {
+      payload: collection
+    };
+  }
+);
 export const makeCollectionSuccess = createAction(
   'collection/makeCollectionSuccess',
-  (returnedPiece: Collection) => {
+  (collection: CreatedCollection) => {
     return {
-      payload: returnedPiece
+      payload: collection
     };
   }
 );

@@ -31,6 +31,7 @@ const Img = styled.img`
   height: calc(100vw - 32px);
   border-radius: 8px 8px 0 0;
   background-color: #cccccc;
+  object-fit: cover;
 `;
 
 const Desc = styled.div`

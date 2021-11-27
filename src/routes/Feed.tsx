@@ -6,18 +6,20 @@ import Filter from '../modules/feed/components/Filter';
 import PieceList from '../common/components/PieceList';
 import CollectionList from '../common/components/CollectionList';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMyPieceStart } from '../modules/myPage/utils/myPage.action';
+import { fetchMyPieceStart, fetchMyCollectionStart } from '../modules/myPage/utils/myPage.action';
 import { RootState } from '../app/rootReducer';
-import { selectMyPieceList } from '../modules/myPage/utils/myPage.reducer';
+import { selectMyPieceList, selectMyCollectionList } from '../modules/myPage/utils/myPage.reducer';
 
 const Feed = () => {
   const [showPiece, setShowPiece] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMyPieceStart());
+    dispatch(fetchMyCollectionStart());
   }, []);
 
   const pieceList = useSelector((state: RootState) => selectMyPieceList(state));
+  const collectionList = useSelector((state: RootState) => selectMyCollectionList(state));
 
   return (
     <Container>
@@ -31,7 +33,7 @@ const Feed = () => {
         </Title>
       </TitleContainer>
       <Filter />
-      {showPiece ? <PieceList list={pieceList} /> : <CollectionList />}
+      {showPiece ? <PieceList list={pieceList} /> : <CollectionList list={collectionList} />}
     </Container>
   );
 };

@@ -7,7 +7,7 @@ const PieceMaker = () => {
   return (
     <Container>
       <Maker>
-        <img />
+        <img src={'../쥬니.png'} />
         <Caption>이곧감</Caption>
       </Maker>
       <Follow />
@@ -32,5 +32,6 @@ const Maker = styled.div`
     border-radius: 100%;
     background: #c4c4c4;
     margin-right: 4px;
+    object-fit: cover;
   }
 `;

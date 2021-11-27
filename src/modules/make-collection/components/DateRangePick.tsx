@@ -35,7 +35,7 @@ const DateRangePick = ({ setDayCount, date, setDate, onNext }: DateRangeProps) =
               if (Difference_In_Days == 0) {
                 setSub('(당일치기)');
               } else {
-                setSub(`(${Difference_In_Days - 1}박${Difference_In_Days}일)`);
+                setSub(`(${Difference_In_Days}박${Difference_In_Days + 1}일)`);
               }
             } else {
               setSub('');

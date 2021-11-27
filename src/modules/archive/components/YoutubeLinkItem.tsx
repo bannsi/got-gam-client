@@ -6,13 +6,13 @@ import { getYoutubeImg } from '../utils/getYoutubeImg';
 import TimeStamp from './TimeStamp';
 
 const YoutubeLinkItem = () => {
-  const timeList = ['3:15', '2:3:15'];
-  const url = 'https://www.youtube.com/watch?v=bRQA51GleGY';
+  const timeList = ['3:15', '8:15'];
+  const url = 'https://www.youtube.com/watch?v=85M2OubOXX8';
   return (
     <Container>
       <Image src={getYoutubeImg(url)} />
       <TextContainer>
-        <SubTitle type="2">영상제목</SubTitle>
+        <SubTitle type="2">vlog | 부산출신의 2박3일 부산 여행 브이로그🌊⛱</SubTitle>
         <TimeList>
           {timeList.map((time, index) => (
             <TimeStamp key={index} url={url} time={time} />

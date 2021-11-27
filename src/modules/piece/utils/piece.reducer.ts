@@ -6,18 +6,19 @@ import { Keyword, Piece, Who } from './piece.interface';
 interface initialStateProps {
   keywords: Keyword[];
   whos: Who[];
-  piece: Piece | null;
+  piece?: Piece;
 }
 
 const initialState: initialStateProps = {
   keywords: [],
   whos: [],
-  piece: null
+  piece: undefined
 };
 
 const reducer = createReducer(initialState, {
   [makePieceSuccess.type]: (state, action: ReturnType<typeof makePieceSuccess>) => {
     state.piece = { ...action.payload };
+    console.log(state.piece);
   },
   [fetchWhosSuccess.type]: (state, action: ReturnType<typeof fetchWhosSuccess>) => {
     state.whos = [...action.payload];

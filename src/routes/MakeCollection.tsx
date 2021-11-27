@@ -11,13 +11,17 @@ import { selectMyPieceList } from '../modules/myPage/utils/myPage.reducer';
 import { Piece } from '../modules/piece/utils/piece.interface';
 import Editor from '../modules/make-collection/components/Editor';
 import { useNavigate } from 'react-router-dom';
+import { Collection } from '../modules/make-collection/utils/collection.interface';
+import { makeCollectionStart } from '../modules/make-collection/utils/collection.action';
 
 const MakeCollection = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState(0);
   const [selectList, setSelectList] = useState<Piece[]>([]);
   const [selectedCover, setSelectedCover] = useState<string>('');
+  const [title, setTitle] = useState('');
   const [dayCount, setDayCount] = useState(1);
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -25,11 +29,21 @@ const MakeCollection = () => {
       key: 'selection'
     }
   ]);
+  const [items, setItems] = useState<Collection[]>([]);
   const onNext = () => {
     setForm(form + 1);
   };
   const onSubmit = () => {
-    navigate('/');
+    dispatch(
+      makeCollectionStart({
+        title: title,
+        startDate: date[0].startDate.toUTCString(),
+        endDate: date[0].endDate.toUTCString(),
+        coverImage: selectedCover,
+        items: items
+      })
+    );
+    navigate('/collection');
   };
   const dispatch = useDispatch();
   useEffect(() => {
@@ -41,7 +55,13 @@ const MakeCollection = () => {
   const formList = [
     {
       element: (
-        <PieceSelector selectList={selectList} setSelectList={setSelectList} list={pieceList} />
+        <PieceSelector
+          items={items}
+          setItems={setItems}
+          selectList={selectList}
+          setSelectList={setSelectList}
+          list={pieceList}
+        />
       )
     },
     {
@@ -66,7 +86,18 @@ const MakeCollection = () => {
       )
     },
     {
-      element: <Editor dayCount={dayCount} selectList={selectList} />
+      element: (
+        <Editor
+          title={title}
+          setTitle={setTitle}
+          startDate={date[0].startDate}
+          endDate={date[0].endDate}
+          dayCount={dayCount}
+          selectList={selectList}
+          items={items}
+          setItems={setItems}
+        />
+      )
     }
   ];
   return (
@@ -94,5 +125,4 @@ const ElementContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  /* padding: 16px; */
 `;

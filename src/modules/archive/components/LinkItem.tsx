@@ -2,7 +2,10 @@ import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import React from 'react';
 import styled from 'styled-components';
 
-const LinkItem = () => {
+interface LinkItemProps {
+  url: string;
+}
+const LinkItem = ({ url }: LinkItemProps) => {
   return (
     <Container>
       <LinkPreview
@@ -11,7 +14,7 @@ const LinkItem = () => {
         margin="8px 0"
         width="382px"
         borderColor="#E1E1E1"
-        url="https://junistory.blogspot.com/2017/06/css-ellipsis.html"
+        url={url}
       />
     </Container>
   );

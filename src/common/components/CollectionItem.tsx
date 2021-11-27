@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { CollectionItemType } from '../../modules/myPage/utils/myPage.api';
 import ArchiveButton from '../buttons/ArchiveButton';
 import { Headline } from '../text/Headline';
 import { SubTitle } from '../text/SubTitle';
 
-const CollectionItem = () => {
+interface CollectionItemProps {
+  item: CollectionItemType;
+}
+const CollectionItem = ({ item }: CollectionItemProps) => {
+  const navigate = useNavigate();
   const [isArchived, setIsArchived] = useState(false);
   const onArchive = () => {
     setIsArchived(!isArchived);
@@ -12,10 +18,10 @@ const CollectionItem = () => {
   return (
     <ContainerBox>
       <ArchiveButton isArchived={isArchived} onArchive={onArchive} />
-      <Container className="item">
+      <Container onClick={() => navigate(`/collection/${item.id}`)} className="item">
         <Content>
-          <Title type={'6'}>제주 첫 여행</Title>
-          <SubTitle type={'2'}>제주</SubTitle>
+          <Title type={'6'}>{item.title}</Title>
+          <SubTitle type={'2'}>부산</SubTitle>
         </Content>
       </Container>
     </ContainerBox>
