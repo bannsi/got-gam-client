@@ -56,6 +56,28 @@
 
 ---
 
+
+기술스택 
+
+- React
+- Redux
+- Redux-saga
+- Typescript
+- styled-components
+
+외부 라이브러리 및 API
+
+- 카카오 로컬 API
+- 카카오 맵 API
+- 카카오 로그인 API 
+- react-router-dom
+- history
+- exif.js
+- react-modal 
+- moment
+- react-link-preview 
+
+
 ### 프론트엔드 개발
 
 이번 해커톤에서는 앱 서비스를 개발이 원래 목적인데, 웹 뷰 개발도 허용이 된다고 하셨다. 리액트 네이티브를 사용해볼까도 고민했지만 팀빌딩하는 데 많은 시간이 들었고, 기획도 잡히지 않은 상황에서 남은 시간을 고려하여야만 했으므로 개발 속도를 생각해 내가 가장 익숙한 리액트와 리덕스를 사용하기로 하였다.
